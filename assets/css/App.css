@@ -1,0 +1,235 @@
+:root 
+{
+  --all-text: #FFD43B;
+  --sel-Ava-bg-col: rgb(19, 18, 56);
+}
+
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body
+{
+  background-color:#031c41;
+  max-width: 1440px;
+  margin: auto auto;
+  font-family: 'Averia Serif Libre', cursive;
+  height: 100vh;
+}
+
+footer
+{
+  text-align: center;
+  color: #5595d6;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+#welcomeBanner
+{
+  background-image: url(https://media.giphy.com/media/LcPiw0vBAK0Mp4NB9B/source.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 40vh;
+  border-radius: 50%;
+  max-width: 50%;
+  margin: 50px auto;
+}
+
+#WelcomePage
+{
+  display: grid;
+  grid-template-rows: .5fr .5fr .3fr;
+}
+
+#WelcomePage > section 
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr .5fr;
+    justify-self: center;
+    color: var(--all-text);
+}
+
+.fas, .far
+{
+  font-size: 2rem;
+}
+
+#rulesDiv
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#gameRules
+{
+  grid-column-start: 2;
+  padding: 25px;
+  margin : 45px;
+  background-color:#5595d6;
+  border: 2px solid #5A82B2;
+  border-radius: 15px;
+  color: var(--all-text);
+  font-size: 2rem;
+}
+
+#displayRules
+{
+  margin: 25px 150px;
+  text-align: justify;
+  color: whitesmoke;
+  font-size: 1.5rem;
+  border-color: aqua;
+}
+
+/********************************************************************
+        All BUTTONS SELECTION
+********************************************************************/
+#startGame:hover
+{
+  background-color: #237020;
+  color: white;
+}
+
+#loadGame:hover
+{
+  background-color: #a7881a;
+  color: white;
+
+}
+
+#gameRules:hover
+{
+    background-color: #834013;
+    color: white;
+}
+
+#backButton:hover
+{
+  background-color: #5595d6;
+  border: 2px solid white;
+  color: white;
+}
+
+a > #backButton
+{
+  padding: 25px;
+  margin : 45px;
+  background-color: white;
+  border: 2px solid #5A82B2;
+  border-radius: 15px;
+  font-size: 2rem;
+  justify-self: center;
+}
+
+#backButton:hover
+{
+  background-color: #5595d6;
+  border: 2px solid white;
+  color: white;
+}
+
+a > #startGame
+{
+  padding: 25px;
+  margin : 45px;
+  background-color: white;
+  border: 2px solid #5A82B2;
+  border-radius: 15px;
+  font-size: 2rem;
+}
+
+a
+{
+  text-decoration: none;
+
+}
+
+#WelcomePage > section > button
+{
+  padding: 25px;
+  margin : 45px;
+  background-color: white;
+  border: 2px solid #5A82B2;
+  border-radius: 15px;
+  font-size: 2rem;
+}
+
+#musicOnOff, #saveGame
+{
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px;
+  margin : 75px 45px;
+  font-size: 2rem;
+  justify-self: center;
+}
+
+/********************************************************************
+        AVATAR SELECTION
+********************************************************************/
+#selectAvatarContainer
+{
+    background-color:#031c41;
+    max-width: 1440px;
+    margin: auto auto;
+    font-family: 'Averia Serif Libre', cursive; 
+    height: 60vh;
+}
+
+#selectAvatarContainer > #otherControls
+{
+    display: grid;
+    grid-template-columns: .5fr 3fr .5fr;
+}
+
+#otherControls > h1
+{
+    margin: 30px auto;
+    text-align: center;
+    font-size: 4rem;
+    color: var(--all-text);
+}
+
+#selectAvatar
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    max-width: 1440px;
+}
+
+#avatarImage
+{
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 40vh;
+}
+
+.avatar:hover
+{
+    background-color: #081427;
+}
+
+.avatarSelectionButtons
+{
+    background-image: url(../img/L013.gif);
+    background-size: cover;
+    background-position: center center;
+
+    background-color: rgb(14, 48, 56);
+    border-radius: 50%;
+    border: 5px solid var(--all-text);
+    font-size: 25px;
+    color: var(--all-text);
+    width: 95%;
+    padding: 25px;
+}
+
+
