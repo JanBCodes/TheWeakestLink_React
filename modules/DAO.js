@@ -16,9 +16,8 @@ class RESTAPI
             });
 
         })
-
     }
-}
+};
 
 class Avatars
 {
@@ -32,9 +31,9 @@ class Avatars
         this.image=p;
         this.name = d;
     }
-}
+};
 
 // export default Avatars;
 // export default RESTAPI;
 
-export { RESTAPI, Avatars}
+export { RESTAPI, Avatars }

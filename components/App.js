@@ -2,7 +2,6 @@ import React from 'react';
 
 import {} from '../assets/css/App.css'
 
-import Header from './Header'
 import Footer from './Footer';
 
 import WelcomePage from '../pages/WelcomePage'
@@ -26,7 +25,6 @@ const App = () => {
 
   return (
     <>
-      <Header/>
       <main id="main">
         <Router>
           <Switch>
