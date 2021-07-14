@@ -1,14 +1,15 @@
 import React from 'react';
 
-import {} from '../assets/css/App.css'
+import {} from '../assets/css/App.css';
+import { useState } from 'react';
 
 import Footer from './Footer';
 
-import WelcomePage from '../pages/WelcomePage'
-import SelectAvatarPage from '../pages/SelectAvatarPage'
-import ConfirmAvatarPage from '../pages/ConfirmAvatarPage'
-import GamePlayPage from '../pages/GamePlayPage'
-import SummaryPage from '../pages/SummaryPage'
+import WelcomePage from '../pages/WelcomePage';
+import SelectAvatarPage from '../pages/SelectAvatarPage';
+import ConfirmAvatarPage from '../pages/ConfirmAvatarPage';
+import GamePlayPage from '../pages/GamePlayPage';
+import SummaryPage from '../pages/SummaryPage';
 
 import {
   BrowserRouter as Router,
@@ -16,21 +17,29 @@ import {
   Route,
 } from "react-router-dom";
 
+// import MusicContext from '../context/MusicContext';
+import RulesContext from '../context/RulesContext';
+
 
 const App = () => {
 
-
-// context
-
+  const [rulesStatus, setRulesStatus] = useState({status: false});
 
   return (
     <>
+
+    
       <main id="main">
+
+      <RulesContext.Provider value={{rulesStatus, setRulesStatus}}>
+
         <Router>
           <Switch>
+
             <Route exact path="/">
               <WelcomePage/>
             </Route>
+
 
             <Route path="/selectPlayer">
               <SelectAvatarPage/>
@@ -50,6 +59,9 @@ const App = () => {
 
           </Switch>   
         </Router>       
+
+        </RulesContext.Provider>
+
       </main>
       <Footer/>
     </>

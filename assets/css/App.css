@@ -52,7 +52,7 @@ footer {
   background-position: center center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 50vh;
+  height: 20vh;
 }
 
 #WelcomePage {
@@ -81,7 +81,6 @@ footer {
   justify-self: center;
   width: 100%;
   grid-column: span 2 / 3;
-
 }
 
 #displayRules {
@@ -89,6 +88,12 @@ footer {
   text-align: center;
   color: var(--all-white-text);
   font-size: 1.5rem;
+}
+
+#showRulesDiv
+{
+  justify-items: center;
+
 }
 
 /********************************************************************
@@ -99,7 +104,6 @@ a {
   text-decoration: none;
   justify-self: center; 
   width: 100%;
-
 }
 
 a > #startGame {
@@ -110,6 +114,8 @@ a > #startGame {
   width: 100%;
   justify-self: center;
   font-size: 2rem;
+  height: 100%;
+
 }
 
 #WelcomePage #loadGame {
@@ -120,7 +126,7 @@ a > #startGame {
   width: 100%;
   justify-self: center;
   font-size: 2rem;
-
+  height: 100%;
 }
 
 #gameRulesButton {
@@ -179,16 +185,19 @@ a > #backButton {
 		AVATAR SELECTION
 ********************************************************************/
 #selectAvatarContainer {
-  background-color: #031c41;
   font-family: "Averia Serif Libre", cursive;
-  height: 60vh;
   background-color: black;
-
+  /* background-image: url(../img/Weakest-Link-Dark_playerRoom.jpg); */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat; 
+  padding-bottom: 50px;
 }
 
 #selectAvatarContainer > #otherControls {
   display: grid;
   grid-template-columns: 0.5fr 3fr 0.5fr;
+  height: 30%;
 }
 
 #selectAvatarContainer #musicOnOff
@@ -213,24 +222,25 @@ a > #backButton {
 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-
-  background-image: url(../img/Weakest-Link-Dark_playerRoom.jpg);
+  /* background-image: url(../img/Weakest-Link-Dark_playerRoom.jpg); */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat; 
-  width: 100%;
-  height: 100%;
+  height: 60%;
+  align-items: center;
 }
 
 .avatar
 {
-  border-bottom:50%;
+  background-size: cover;
+  background-position: center center;
+  margin: 0 15px;
+  min-height: 30vh;
+  border-radius: 25px;
 }
 
 .avatarNameDisplayButtons {
   background-color: var(--skyBlue-color);
-  background-size: cover;
-  background-position: center center;
   border-radius: 50%;
   border: 10px solid var(--all-white-text);
   font-size: 25px;
@@ -238,7 +248,7 @@ a > #backButton {
   text-shadow: yellow;
   width: 95%;
   padding: 25px;
-  
+  height: 25%;
 }
 
 .avatar:hover {
@@ -251,6 +261,19 @@ a > #backButton {
   color: var(--all-gold-text);
 
 }
+
+#Birdman {  background-image: url(../img/players/Birdman.png);  }
+
+#Nicki  { background-image: url(../img/players/Nicki.png); }
+
+#Megan  {  background-image: url(../img/players/Megan.png);  }
+
+#Wayne  {  background-image: url(../img/players/Wayne.png);  }
+
+#Drake {  background-image: url(../img/players/Drake.png);  }
+
+#Cardi {  background-image: url(../img/players/Cardi.png);  }
+
 
 /********************************************************************
 		CONFIRM AVATAR SELECTION
@@ -407,9 +430,9 @@ a > #backButton {
   background-color: #000000;
 }
 
-.hide {
+/* .hide {
   display: none;
-}
+} */
 
 /* */
 
@@ -492,3 +515,8 @@ a > #backButton {
 .hide {
   display: none;
 }
+
+
+/* .show {
+  display: block;
+} */
