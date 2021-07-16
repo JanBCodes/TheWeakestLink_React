@@ -8,6 +8,8 @@ import Header from '../components/Header'
 
 import RulesContext from '../context/RulesContext'
 
+// import sound from '../modules/Music'
+
 const WelcomePage = () => {
 
     const { rulesStatus, setRulesStatus} = useContext(RulesContext);
@@ -50,7 +52,7 @@ const WelcomePage = () => {
                     </div>
                 </div>
 
-                <Button id="musicOnOff" text={<FaMusic className='fas fa-music'/>}/> 
+                <Button id="musicOnOff" text={<FaMusic className='fas fa-music'/>} /> 
             </div>
         </>
     )

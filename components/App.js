@@ -19,11 +19,13 @@ import {
 
 // import MusicContext from '../context/MusicContext';
 import RulesContext from '../context/RulesContext';
+import ModalContext from '../context/ModalContext';
 
 
 const App = () => {
 
   const [rulesStatus, setRulesStatus] = useState({status: false});
+  const [modalStatus, setModalStatus] = useState({status: false});
 
   return (
     <>
@@ -32,6 +34,7 @@ const App = () => {
       <main id="main">
 
       <RulesContext.Provider value={{rulesStatus, setRulesStatus}}>
+      <ModalContext.Provider value={{modalStatus, setModalStatus}}>
 
         <Router>
           <Switch>
@@ -60,6 +63,9 @@ const App = () => {
           </Switch>   
         </Router>       
 
+
+
+        </ModalContext.Provider>
         </RulesContext.Provider>
 
       </main>

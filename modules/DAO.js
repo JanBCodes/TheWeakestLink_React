@@ -24,12 +24,14 @@ class Avatars
     id;
     image;
     name;
+    key;
 
-    constructor(n,p,d)
+    constructor(n,p,d,k)
     {
-        this.id=n;
-        this.image=p;
+        this.id = n;
+        this.image = p;
         this.name = d;
+        this.key = k;
     }
 };
 

@@ -10,22 +10,28 @@ import { Avatars } from '../modules/DAO';
 
   const AvatarsArr = [];
 
-  AvatarsArr.push(new Avatars("avatar1","Birdman.png","Birdman")); 
-  AvatarsArr.push(new Avatars("avatar2","Nicki.png","Nicki"));
-  AvatarsArr.push(new Avatars("avatar3","Drake.png","Drake")); 
-  AvatarsArr.push(new Avatars("avatar4","Cardi.png","Cardi"));
-  AvatarsArr.push(new Avatars("avatar5","Wayne.png","Wayne"));
-  AvatarsArr.push(new Avatars("avatar6","Megan.png","Megan"));
+  AvatarsArr.push(new Avatars("avatar1","Birdman.png","Birdman","1")); 
+  AvatarsArr.push(new Avatars("avatar2","Nicki.png","Nicki","2"));
+  AvatarsArr.push(new Avatars("avatar3","Drake.png","Drake","3")); 
+  AvatarsArr.push(new Avatars("avatar4","Cardi.png","Cardi","4"));
+  AvatarsArr.push(new Avatars("avatar5","Wayne.png","Wayne","5"));
+  AvatarsArr.push(new Avatars("avatar6","Megan.png","Megan","6"));
 
 
 
 const SelectAvatarPage = () => {
 
 
-  const selectedAvatar = () => {
+  const selectedAvatar = (event) => {
 
+      const playerSelected = event.target.id
+
+      sessionStorage.setItem('Name', `${playerSelected}`)
+
+      alert(`${playerSelected}: Selected`)
 
   }
+
 
 
   return (
@@ -39,7 +45,7 @@ const SelectAvatarPage = () => {
           </Link>
 
           <h1>
-              Select Your Player
+              Select Your Player (click Image)
           </h1>
 
           <Button id="musicOnOff" text={<FaMusic className='fas fa-music'/>}/> 
@@ -48,16 +54,24 @@ const SelectAvatarPage = () => {
 
         <div id="selectAvatar">
 
-            {AvatarsArr.map((avatar) => (
-                        
-              <Link to={`/confirmPlayer`} key={"none"+avatar.id}> 
+          {AvatarsArr.map((avatar) => (
+              <>        
+            <Link to={`/confirmPlayer`} key={avatar.id}> 
 
-                <div key={avatar.id} id={avatar.name} className="avatar">
-                </div>
-                <Button key={avatar.name} text={avatar.name} className="avatarNameDisplayButtons" onClick={selectedAvatar}/>
+              <div key={avatar.key} id={avatar.name} text={avatar.name}  className="avatar" onClick={selectedAvatar}> </div>
 
-              </Link>
-            ))}
+            </Link>
+
+
+            </>
+          ))}
+
+          {AvatarsArr.map((avatar) => (
+
+            <Button key={avatar.key} text={avatar.name} className="avatarNameDisplayButtons"/>
+
+          ))}
+
         </div>
     </div>
     </>

@@ -6,12 +6,14 @@ import Button from "../components/Button";
 
 const ConfirmAvatarPage = () => {
 
+
+	const playerSelected = sessionStorage.getItem('Name')
     
   return (
+
     <div id="confirmAvatar">
-      {/* <section id="otherControls"> */}
+
       <Button id="musicOnOff" text={<FaMusic className="fas fa-music" />} />
-      {/* </section>   */}
 
 		<main>
 			<div>
@@ -24,10 +26,14 @@ const ConfirmAvatarPage = () => {
 				<Link to={`/selectPlayer`}>
 					<Button type="button" id={"No"} text={"Re-Select"} />
 				</Link>
-				
+			
 			</div>
 
-			<div id="avatarSelected"> </div>
+			<div className="avatarNameDisplayButtons"> 
+				<div id={playerSelected} className="avatarSelected">
+				</div>
+				{playerSelected}
+			</div>		
 		</main>
     </div>
   );

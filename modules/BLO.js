@@ -8,7 +8,7 @@ const businessRules =
     suddenDeathRound: ["Classic5050.png","ClassicATA.png","ClassicPAF.png"],
     roundTimer: [45,20], 
     maxBankedPerRound:500000,
-    allotedTimeToBank: 2000
+    allotedTimeToBank: 3000
 
 }
 
