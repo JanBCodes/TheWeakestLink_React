@@ -8,12 +8,12 @@ const MoneyTree = (prop) => {
 
     if(prop.round === 1)   
     { 
-        moneyTreeData = businessRules.roundOneMoneyTree.reverse()
+        moneyTreeData = businessRules.roundOneMoneyTree
     } 
 
     if(prop.round === 2)   
     { 
-        moneyTreeData = businessRules.roundTwoMoneyTree.reverse()
+        moneyTreeData = businessRules.roundTwoMoneyTree
     } 
 
     if(prop.round === 3)   

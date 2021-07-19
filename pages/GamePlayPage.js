@@ -2,6 +2,7 @@ import { useContext,useEffect,useState } from "react";
 
 import Button from "../components/Button";
 import MoneyTree from "../components/MoneyTree";
+import Timer from "../components/Timer"
 
 import { FaMusic } from "react-icons/fa";
 import { FaSave } from "react-icons/fa";
@@ -12,6 +13,8 @@ import ModalContext from "../context/ModalContext";
 import businessRules from "../modules/BLO";
 import { RESTAPI } from '../modules/DAO';
 
+const he = require('he');
+
 // import BgImg from "../assets/img/Weakest_Link_US_BG.Banner.png"
 
 
@@ -20,16 +23,16 @@ const GamePlayPage = () => {
     const playerSelected = sessionStorage.getItem('Name');
     
     let round = 1;
-    const answers = [];
+    // const answers = [];
 /************************************************
 *********************************************** */
 
-    const {modalStatus} = useContext(ModalContext);
+    const {modalStatus, setModalStatus} = useContext(ModalContext);
     const [questionAndAnswerObj,setQuestionAndAnswerObj] = useState({
 
         question: null,
         correctAnswer: null,
-        incorrectAnswers: answers//array
+        answers: []
 
     });
 
@@ -43,29 +46,30 @@ const GamePlayPage = () => {
 
         .then((data) => {
 
+            questionAndAnswerObj.question = he.decode(data.results[businessRules.randomQuestionNumber].question)
 
-            questionAndAnswerObj.question = data.results[businessRules.randomQuestionNumber].question;
-            questionAndAnswerObj.correctAnswer = data.results[businessRules.randomQuestionNumber].correct_answer;
+            // questionAndAnswerObj.question = data.results[businessRules.randomQuestionNumber].question;
+            questionAndAnswerObj.correctAnswer = he.decode(data.results[businessRules.randomQuestionNumber].correct_answer + '  *')
             questionAndAnswerObj.incorrectAnswers = data.results[businessRules.randomQuestionNumber].incorrect_answers; //array
 
             /************************************************
             Pushing Answer to Array to be Shuffled for Random display
             *********************************************** */
 
-            // answers.push(questionAndAnswerObj.correctAnswer)  
-            // questionAndAnswerObj.incorrectAnswers.forEach((dataR) => {
+            console.log(`Correct Answer: ${questionAndAnswerObj.correctAnswer}`)  
 
-            //     answers.push(dataR)
-            // })
+            questionAndAnswerObj.answers.push(questionAndAnswerObj.correctAnswer)  
+            questionAndAnswerObj.incorrectAnswers.forEach((dataR) => {
 
-            // // answers.sort()
+                questionAndAnswerObj.answers.push(he.decode(dataR))
+            })
+
+            questionAndAnswerObj.answers.sort()
+
             const OGquestionAndAnswerObj = {...questionAndAnswerObj}
 
             setQuestionAndAnswerObj(OGquestionAndAnswerObj)
 
-            console.log(questionAndAnswerObj)
-
-            console.log(answers)
         })
 
     },[])
@@ -74,10 +78,44 @@ const GamePlayPage = () => {
 
     const checkAnswer = (event) => {
 
-        console.log(event)
-        alert(`check answer fn`)
+        const clicked = event.target.id
+       
+        
+        if(clicked === questionAndAnswerObj.correctAnswer)
+        {
+            // alert(`Correct Answer Selected`)
+            setModalStatus({status: true})
+
+
+
+            //call Bank Modal
+            //Move Up MOney Tree
+            //Call New Question
+        }
+        else
+        {
+            alert(`Wrong Answer Selected`)
+            //Restart Position on Money Tree
+
+        }
+
 
     }
+
+    const bankMoney = () => {
+
+        
+        //Add to Bank
+        // Move Up Money Tree
+        //Call New Question
+
+        setModalStatus({status: false})
+
+
+    }
+
+
+
 
     return (
         <div id="gameScreenContainer">
@@ -110,7 +148,7 @@ const GamePlayPage = () => {
                 <div id="gamePlayButtons">
 
                     <div id="displayedElements">
-                        <div id="timerDisplay"> {`Timer`} </div>
+                        <Timer timer={round === 1 ? businessRules.roundTimer[0] : businessRules.roundTimer[1]}/>
                         <div id="roundDisplay"> Round {round} </div>
                         <div id="currentBankedAmount"> Current Banked Amt {} </div>
                     </div>
@@ -121,20 +159,14 @@ const GamePlayPage = () => {
 
                     <div id={modalStatus.status === false ? "displayAnswerContainer" : "hide"}>
 
-                        <div className="displayAnswers"> {questionAndAnswerObj.incorrectAnswers[0]} </div>
-                        <div className="displayAnswers"> {questionAndAnswerObj.incorrectAnswers[1]} </div>
-                        <div className="displayAnswers" onClick={checkAnswer}> {questionAndAnswerObj.correctAnswer}</div>
-                        <div className="displayAnswers" onClick={checkAnswer}> {questionAndAnswerObj.incorrectAnswers[2]} </div>
-
-                        {/* {answers.map((answer) => (
-                            <div key={answer} className="displayAnswers"> {answer} </div>
-                        ))} */}
-
+                        {questionAndAnswerObj.answers.map((answer) => (
+                            <div key={answer} id={answer} className="displayAnswers" onClick={checkAnswer}> {answer} </div>
+                        ))}
                     </div>
 
                     <div id={modalStatus.status === true ? "modalBank" : "hide"} >
                             <div>{`3 sec Timer`}</div>
-                            <Button id="bankedButton" text={<FaPiggyBank className="fas fa-piggy-bank"/>} />
+                            <button id="bankedButton" onClick={bankMoney}> <FaPiggyBank className="fas fa-piggy-bank"/> </button>
                     </div>
 
                     <div id={round === 3 ? "finalQuestionsCounterContainer" : "hide"}>

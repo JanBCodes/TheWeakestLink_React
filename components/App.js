@@ -20,21 +20,24 @@ import {
 // import MusicContext from '../context/MusicContext';
 import RulesContext from '../context/RulesContext';
 import ModalContext from '../context/ModalContext';
+import TimerContext from '../context/TimerContext'
 
 
 const App = () => {
 
   const [rulesStatus, setRulesStatus] = useState({status: false});
   const [modalStatus, setModalStatus] = useState({status: false});
+  const [timerStatus, setTimerStatus] = useState({time: null});
+
 
   return (
     <>
 
-    
       <main id="main">
 
       <RulesContext.Provider value={{rulesStatus, setRulesStatus}}>
       <ModalContext.Provider value={{modalStatus, setModalStatus}}>
+      <TimerContext.Provider value={{timerStatus, setTimerStatus}}>
 
         <Router>
           <Switch>
@@ -64,7 +67,7 @@ const App = () => {
         </Router>       
 
 
-
+        </TimerContext.Provider>
         </ModalContext.Provider>
         </RulesContext.Provider>
 

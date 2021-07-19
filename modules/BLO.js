@@ -3,8 +3,8 @@ const businessRules =
 {
     endPoint: `https://opentdb.com/api.php?amount=50&category=9&difficulty=easy&type=multiple`,
     randomQuestionNumber: Math.floor(Math.random() * 50), 
-    roundOneMoneyTree: [`$0`,`$1,000`,`$5,000`,`$10,000`,`$50,000`,`$75,000`,`$12,5000`,`$25,0000`,`$500,000`],
-    roundTwoMoneyTree: [`$0`,`$1,000`,`$10,000`,`$75,000`,`$125,000`,`$500,000`],
+    roundOneMoneyTree: [`$500,000`,`$250,000`,`$125,000`,`$75,000`,`$50,000`,`$10,000`,`$5,000`,`$1,000`,`$0`],
+    roundTwoMoneyTree: [`$500,000`,`$125,000`,`$75,000`,`$10,000`,`$1,000`, `$0`],
     suddenDeathRound: ["Classic5050.png","ClassicATA.png","ClassicPAF.png"],
     roundTimer: [45,20], 
     maxBankedPerRound:500000,
