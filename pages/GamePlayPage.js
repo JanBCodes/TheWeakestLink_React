@@ -9,6 +9,7 @@ import { FaSave } from "react-icons/fa";
 import { FaPiggyBank } from "react-icons/fa"
 
 import ModalContext from "../context/ModalContext";
+import DecisionTimerContext from "../context/DecisionTimerContext";
 
 import businessRules from "../modules/BLO";
 import { RESTAPI } from '../modules/DAO';
@@ -17,18 +18,19 @@ const he = require('he');
 
 // import BgImg from "../assets/img/Weakest_Link_US_BG.Banner.png"
 
-
 const GamePlayPage = () => {
 
     const playerSelected = sessionStorage.getItem('Name');
     
     let round = 1;
-    // const answers = [];
+    let decisionTimer = 2;
+
 /************************************************
 *********************************************** */
 
     const {modalStatus, setModalStatus} = useContext(ModalContext);
-    const [questionAndAnswerObj,setQuestionAndAnswerObj] = useState({
+    const {decisionTimerStatus, setDecisionTimerStatus} = useContext(DecisionTimerContext);
+    const [questionAndAnswerObj, setQuestionAndAnswerObj] = useState({
 
         question: null,
         correctAnswer: null,
@@ -38,7 +40,14 @@ const GamePlayPage = () => {
 
 /************************************************
 *********************************************** */
+
     useEffect(() => {
+
+        apiCall()
+
+    },[])
+
+    const apiCall = () => {
 
         const newQuestion  = new RESTAPI();
 
@@ -56,7 +65,7 @@ const GamePlayPage = () => {
             Pushing Answer to Array to be Shuffled for Random display
             *********************************************** */
 
-            console.log(`Correct Answer: ${questionAndAnswerObj.correctAnswer}`)  
+            // console.log(`Correct Answer: ${questionAndAnswerObj.correctAnswer}`)  
 
             questionAndAnswerObj.answers.push(questionAndAnswerObj.correctAnswer)  
             questionAndAnswerObj.incorrectAnswers.forEach((dataR) => {
@@ -72,30 +81,58 @@ const GamePlayPage = () => {
 
         })
 
-    },[])
+
+    }
+ 
 /************************************************
 *********************************************** */
 
     const checkAnswer = (event) => {
 
         const clicked = event.target.id
-       
-        
+               
         if(clicked === questionAndAnswerObj.correctAnswer)
         {
-            // alert(`Correct Answer Selected`)
+             /* Shows Modal */
             setModalStatus({status: true})
 
+            let counter = decisionTimerStatus.time
+            decisionTimerStatus.time = counter
 
+            /* Counts the Decision Timer */
+                const ref = setInterval(() => {  
+
+                /* Shows the Display Counting Down */
+                    let OGCounter = {...decisionTimerStatus}
+                    counter --
+                    decisionTimerStatus.time = counter
+                    setDecisionTimerStatus(OGCounter)
+
+                    if(decisionTimerStatus.time <0)
+                    {
+                        clearInterval(ref)  /* Stops Timer Modal */
+                        questionAndAnswerObj.answers = []
+                        setQuestionAndAnswerObj({answers: []})
+                        setModalStatus({status: false}) /* Close Modal */
+                        setDecisionTimerStatus({time: 2})
+                        apiCall() /* Calls New Question w. Answers */
+
+                    }
+
+                },1000)
 
             //call Bank Modal
             //Move Up MOney Tree
             //Call New Question
+            // apiCall()
+
         }
-        else
+        else // Wrong Answer Selected
         {
             alert(`Wrong Answer Selected`)
             //Restart Position on Money Tree
+            //Call New Question
+            apiCall()
 
         }
 
@@ -165,7 +202,7 @@ const GamePlayPage = () => {
                     </div>
 
                     <div id={modalStatus.status === true ? "modalBank" : "hide"} >
-                            <div>{`3 sec Timer`}</div>
+                            <div>{`Decision Time ${decisionTimerStatus.time}`}</div>
                             <button id="bankedButton" onClick={bankMoney}> <FaPiggyBank className="fas fa-piggy-bank"/> </button>
                     </div>
 
